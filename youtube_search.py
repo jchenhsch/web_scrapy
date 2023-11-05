@@ -1,19 +1,21 @@
 import asyncio
 from pyppeteer import launch
+from pyppeteer_stealth import stealth
 
 async def get_youtube_search_links(keyword):
     browser = await launch(headless=True)
     page = await browser.newPage()
+    await(stealth(page))
 
     # Navigate to the YouTube search results page with the specific keyword
-    search_url = f'https://www.youtube.com/results?search_query={"china"}'
+    search_url = f'https://www.youtube.com/results?search_query={keyword}'
     await page.goto(search_url)
 
     # Wait for the search results to load
     await page.waitForSelector('#contents')
 
     # Infinite scroll until all search results are loaded (adjust the number of scrolls as needed)
-    for _ in range(10):
+    for _ in range(40):
         await page.evaluate('window.scrollTo(0, document.documentElement.scrollHeight);')
         await asyncio.sleep(2)  # Wait for 2 seconds between scrolls
 
@@ -37,8 +39,9 @@ async def get_youtube_search_links(keyword):
 
     # Close the browser
     await browser.close()
-    print (video_links)
+    print (len(video_links))
     return video_links
 
 # Run the function and print the list of video links
-asyncio.get_event_loop().run_until_complete(get_youtube_search_links('china'))
+if __name__ == "__main__":
+    asyncio.get_event_loop().run_until_complete(get_youtube_search_links('china'))
