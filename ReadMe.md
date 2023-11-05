@@ -1,4 +1,4 @@
-# Web_Scrapying Project
+# Web_Scrapy
 
 ## Goal Scrape comments and relevant information on posts for further NLP and textual analysis
 
