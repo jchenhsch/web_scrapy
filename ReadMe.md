@@ -1,6 +1,6 @@
 # Web_Scrapy
 
-## Goal Scrape comments and relevant information on posts for further NLP and textual analysis
+## Scrape comments and relevant information on posts for further NLP and textual analysis
 
 ## Current progress
 1. Finish static scrapy for the a news website, huxiu.com
